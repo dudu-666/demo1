@@ -1,4 +1,6 @@
 package All.ShowPage.Dao;
+import com.mysql.cj.jdbc.exceptions.ConnectionFeatureNotAvailableException;
+
 import java.sql.Connection;
 import java.sql.Statement;
 import java.text.DateFormat;
@@ -58,6 +60,11 @@ public class AddBookBorrowRecords implements BookDao{
     public void DeleteRecords(){
         String sql="DELETE FROM `teamwork`.`borrowing_records`" + "WHERE `Unum`="+Usernum+" and `Bum`="+Booknum;
         System.out.println(sql);
+        try {
+            Connection connection=getConnect();
+            Statement stmt=connection.createStatement();
+            stmt.executeUpdate(sql);
+        }catch (Exception e){System.out.println(e);}
         DataUpdate("Delete");
     }
     public static void main(String[] args) {
