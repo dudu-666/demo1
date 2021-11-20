@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <style>
+        body{
+            /* 设置背景渐变 */
+            background-image: linear-gradient(to left,
+            #9c88ff,#3cadeb);
+            display: flex;
+            justify-content: center;
+        }
+        .a{
+            position: relative;
+            top: 250px;
+            width: 300px;
+            display: flex;
+            justify-content: center;
+            margin: 0 30px;
+        }
+        .c,.b{
+            font: 900 100px '';
+            line-height: 150px;
+            position: absolute;
+            color: rgb(191, 202, 250);
+            top: 0;
+            /* 使文字上下移动时有0.4s的过渡效果 */
+            transition: .4s;
+        }
+
+        .c{
+            /* 裁剪文字的上半部分，括号里的四个值分别是
+            top，right，bottom，left */
+            clip-path: inset(49% 0 0 0);
+        }
+        .b{
+            /* 裁剪文字的下半部分 */
+            clip-path: inset(1% 0 50% 0);
+        }
+        .a:hover .b,.a:hover .c{
+            /* 让--i为30的向上移动30px，-30的向下移动30px
+            这样子就能空出60px留给中间的超链接 */
+            top: calc(var(--i)*1px);
+        }
+        .a:hover .d{
+            opacity: 1;
+        }
+        .d{
+            text-decoration: none;
+            color: cyan;
+            font: 600 30px '';
+            line-height: 150px;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="a">
+        <div class="b" style="--i:-30">管理员</div>
+        <div class="c" style="--i:30">管理员</div>
+        <a href="GMLogin" target="_self" class="d">登录</a>
+    </div>
+    <div class="a">
+        <div class="b" style="--i:-30">成员</div>
+        <div class="c" style="--i:30">成员</div>
+        <a href="UserLogin" target="_self" class="d">登录</a>
+    </div>
+</body>
+</html>

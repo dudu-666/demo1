@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>叶鹏导师的小分队</title>
+    <style>
+        body{
+            background-color:rgb(124, 156, 245);
+            display: flex;
+            justify-content: center;
+        }
+        .a{
+            potision:relative;
+            top: 5px;
+            display :flex;
+            box-shadow: 2px 5px 15px rgb(72, 112, 221);
+            border-radius: 10px;
+        }
+        .a a{
+            width: 150px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            font-size: 30px;
+            text-decoration: none;
+            color: seashell;
+        }
+        .b{
+            position: absolute;
+            left:420px;
+            width:135px;
+            height:60px;
+            border-radius: 10px;
+            background-color: slategray;
+            z-index: -999;
+            transition:.5s;
+        }
+        .a a:nth-child(2):hover~.b{
+            left:570px;
+        }
+        .a a:nth-child(3):hover~.b{
+            left:720px;
+        }
+    </style>
+</head>
+<body>
+    <div class="a">
+        <a herf="#">图书管理</a>
+        <a herf="#">个人分享</a>
+        <a herf="#">团队管理</a>
+        <div class="b"></div>
+    </div>
+</body>
+</html>
