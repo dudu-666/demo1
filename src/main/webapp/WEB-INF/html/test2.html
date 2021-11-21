@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script>
+        window.onload = function() {
+            var btn = document.querySelector("button");
+            btn.onclick = function() {
+                var ajax;
+
+                /*1.创建XMLHttpRequest对象*/
+                if(window.XMLHttpRequest) {
+                    //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                    ajax = new XMLHttpRequest();
+                } else {
+                    // IE6, IE5 浏览器执行代码
+                    ajax = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+
+                /*设置请求方式和地址  默认是异步*/
+                ajax.open("GET", "http://localhost:8888/demo_war_exploded/BookManagementShow");
+                /*发送请求*/
+                ajax.send();
+
+                /*注册回调函数*/
+                ajax.onreadystatechange = function() {
+                    if(ajax.readyState == 4 && ajax.status == 200) {
+                        document.querySelector("h1").innerHTML = ajax.responseText;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+<h1>aj`这里写代码片`ax请求</h1>
+
+<button>ajax请求</button>
+</body>
+
+</html>

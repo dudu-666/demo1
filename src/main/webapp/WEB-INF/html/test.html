@@ -17,6 +17,7 @@
             type:'GET',
                 uri:"/http://localhost:8888/demo_war_exploded/BookManagementShow",
                 data: {},
+                dataType:'json',
                 success:function (){
                 console.log(res);
                 for(var i=0;i<res.data.length;i++){

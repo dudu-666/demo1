@@ -13,7 +13,7 @@ import java.util.List;
 public class BookManagementController {
     @RequestMapping(value = "BookManagementController")
     public String BookManagementControl(){
-        return "test";
+        return "test2";
     }
     @RequestMapping(value = "BookManagementShow")
     @ResponseBody
