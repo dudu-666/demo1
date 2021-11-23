@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:c="">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>var mid;
+function LookReply(mid){
+    $.ajax({
+        dataType:"json",
+        type:"GET",
+        url:"http://localhost:8888/demo_war_exploded/BookManagementShow",
+        data:{mid:mid},
+        success:function(data){
+            var arr=data.BookList;
+            for(var i=0;i<data.BookList.length;i++){
+                var name=arr[i].bname;
+                var num=arr[i].bnum;
+                var author=arr[i].bauthor;
+                var publichouse=arr[i].bpublichouse;
+                var detail=arr[i].detail;
+                $('#reply_'+mid).prepend("<dl style='background-color:pink;'><dt>"+content+"</dt><dd>书名："+name+"</dd><dd>书号："+num+"</dd><dd>作者："+author+"</dd><dd>出版社："+publichouse+"</dd><dd>详细内容："+detail+"</dd></dl>");
+            }
+        },error:function(data){
+            alert(系统错误);
+        }
+    });
+}</script>
+<c:forEach items="${messages }" var="message">
+    <div>
+        <div>
+            <p><font color="red">${message.content }</font></p>
+        </div>
+        <div><button onclick="LookReply(${message.mid })">查看回复</button></div>
+        <div id="reply_${message.mid }"></div>
+    </div>
+
+    <br>
+</c:forEach>
+</body>
+</html>
