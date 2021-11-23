@@ -37,8 +37,8 @@ public class BookingBook implements BookDao {
         }catch (Exception e){System.out.println(e);}
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         BookingBook bookingBook=new BookingBook("001","004");
         bookingBook.Booking();
-    }
+    }*/
 }
