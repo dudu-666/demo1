@@ -13,10 +13,10 @@ All\ShowPage\Dao\ShowBookByBname.class
 All\ShowPage\Dao\BookDao.class
 All\ShowPage\Dao\AddBookBorrowRecords.class
 All\login\Model\NewAccount.class
-All\main.class
 All\login\Model\Resetdao.class
 All\login\Model\User.class
 All\ShowPage\Controller\BookManagementController.class
+All\ShowPage\Dao\BookingBook.class
 All\Model\UserInformation.class
 All\login\Dao\GMLoginModel.class
 All\ShowPage\Dao\DeleteBook.class
