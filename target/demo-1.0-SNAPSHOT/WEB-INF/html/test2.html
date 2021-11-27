@@ -1,43 +1,112 @@
 <!DOCTYPE html>
 <html>
-
 <head>
+
     <meta charset="UTF-8">
-    <title></title>
 
-    <script>
-        window.onload = function() {
-            var btn = document.querySelector("button");
-            btn.onclick = function() {
-                var ajax;
+    <script src="../js/jquery-3.6.0.min.js"></script>
 
-                /*1.创建XMLHttpRequest对象*/
-                if(window.XMLHttpRequest) {
-                    //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-                    ajax = new XMLHttpRequest();
-                } else {
-                    // IE6, IE5 浏览器执行代码
-                    ajax = new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                /*设置请求方式和地址  默认是异步*/
-                ajax.open("GET", "http://localhost:8888/demo_war_exploded/BookManagementShow");
-                /*发送请求*/
-                ajax.send();/*注册回调函数*/
-                ajax.onreadystatechange = function() {
-                    if(ajax.readyState == 4 && ajax.status == 200) {
-                        document.querySelector("h1").innerHTML = ajax.responseText;
-                    }
-                }
-            }
-        }
-    </script>
+
+    <title>SpringMVC框架中的纯html的Ajax增删改查</title>
+
+
+
 </head>
-
 <body>
 
-<h1>aj`这里写代码片`ax请求</h1>
+<section>
+    <form action="/My_SpringMVC-181122/createAllUser" method="post"   id="form1">
+        <input type="text" name="username"/>姓名
+        <input type="text" name="userage"/> 年龄
+        <input type="radio" name="usergender" value="男" checked="checked"/>男
+        <input type="radio" name="usergender" value="女"/>女
+        <button type="button" id="btn2">添加</button>
+        <button form="form2"   type="submit"  id="btn3">批量删除</button>
+    </form>
+</section>
 
-<button>ajax请求</button>
+
+<section>
+    <form id="form2"  method="post"  action="/My_SpringMVC-181122/deleteUsers">
+        <input type="hidden" id="hid01" name="user_id"/>
+        <table border="1">
+            <thead>
+            <tr>
+                <th><input type="checkbox"  /></th><th>书名</th><th>书号</th><th>作者</th><th>出版社</th>
+            </tr>
+            </thead>
+            <tbody  id="tbodyId">
+            </tbody>
+        </table>
+    </form>
+</section>
+
+
 </body>
 
+
+<script>
+    function update01(oA  ,  user_id){  //直接在当前页面上 进行修改
+        $("#hid01").val(user_id);
+        var oTd2 = $(oA).parent().parent().children().eq(1);
+        var oTd3 = $(oA).parent().parent().children().eq(2);
+        var oTd4 = $(oA).parent().parent().children().eq(3);
+        var oTd5 = $(oA).parent().parent().children().eq(4);
+        oTd2.html("<input type='text' name='username' class='ipt1' value='"+oTd2.text()+"'/>");
+        oTd3.html("<input type='text' name='userage' class='ipt1' value='"+oTd3.text()+"'/>");
+        if(oTd4.text() == "男")
+            oTd4.html("<input type='radio' name='usergender' value='男' checked='checked'/>男&nbsp;<input type='radio' name='usergender' value='女'/>女");
+        else
+            oTd4.html("<input type='radio' name='usergender' value='男'/>男&nbsp;<input type='radio' name='usergender' value='女' checked='checked'/>女");
+        oTd5.html("<a href='javascript:;' onclick='update02();'>确定</a>");
+
+    }
+    function update02(){    //配合上面的修改方法一起用的
+        var oForm = $("#form2");
+        oForm.attr("action","/My_SpringMVC-181122/updateUser");
+        oForm.submit();
+    }
+
+</script>
+
+
+
+<script>
+    $(function(){//JQuery形式 的页面加载函数
+        $.ajax({//当这个页面一加载就会执行这个全查的Ajax
+            url:"/BookManagementShow",
+            type:"get",
+            success:function(returnValue){//我使用了springMVC框架所支持的json的方式，非常方便
+                console.log(returnValue);//在浏览器的控制台上输出。可按下F12查看
+                $.each(returnValue,function(i,v){
+                    var oTbody=$("#tbodyId");
+                    var oTd0=$("<td><input type='chec kbox' name='ids' id='selected-all' value='"+v.user_id+"'></td>");
+                    var oTd1=$("<td>"+v.username+"</td>");
+                    var oTd2=$("<td>"+v.userage+"</td>");
+                    var oTd3=$("<td>"+v.usergender+"</td>");
+                    var oTd4=$('<td><a href="javascript:;" onclick="update01(this,'+(v.user_id)+')" >编辑</a></td>');
+                    var oTr2=$("<tr></tr>");
+                    oTd0.appendTo(oTr2);   //把各列添加到一行中
+                    oTd1.appendTo(oTr2);
+                    oTd2.appendTo(oTr2);
+                    oTd3.appendTo(oTr2);
+                    oTd4.appendTo(oTr2);
+                    oTr2.appendTo(oTbody);
+
+                });
+            }
+        });
+
+
+
+
+        $("#btn2").click(function(){    //为添加按钮挂上事件
+            $("#form1").submit();
+        });
+    });
+
+</script>
+
 </html>
+
+

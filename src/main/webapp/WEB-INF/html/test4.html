@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>登录首页</title>
+    <!-- 样式表修饰 ,引入外部的样式表-->
+    <!--部署JQuery-->
+    <script src="../js/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <!-- JS事件 -->
+    <script type="text/javascript">
+        function toLogin(){
+            /* 先取到账户框和密码框的值 */
+            var accountVal = $("#accountId").val();
+            var passwordVal = $("#passwordId").val();
+            if((accountVal.trim()).length===0){
+                $("#outbox_form_account_error").html("用户名不能为空!");
+            }
+            else if((passwordVal.trim()).length === 0 ){
+                $("#outbox_form_password_error").html("密码不能为空!");
+            }
+            else if((passwordVal.trim()).length > 6){
+                $("#outbox_form_password_error").html("密码最多6位哦!");
+            }
+            else{
+                /*发送请求,将表单的数据提交过去*/
+                $.post("/BookManagementShow",$("#formId").serialize(),function (res){
+                    console.log(res)
+                    if(res.code===201||res.code===500){
+                        //若出现账号不粗案子啊或者服务器异常,弹出提示信息;
+                        alert(res.msg);
+                    }else if(res.code === 200){
+                        //将数据存入session;
+                        window.sessionStorage.setItem("people",res.data.name);
+                        //跳转到简易的成功页面;
+                        location.replace("mysuccess.html");
+                    }
+                },"json");
+            }
+        }
+
+        /* 考虑到提示信息持久性的不能消失;就让输入框,密码框的聚焦事件去清除 */
+        function reAcErr(){
+            $("#outbox_form_account_error").html("");
+        }
+
+        function rePassErr(){
+            $("#outbox_form_password_error").html("");
+        }
+    </script>
+
+</head>
+
+<!-- 包裹注册栏的大盒子 -->
+<div id="outbox">
+    <div id="outbox_welcome">
+        欢迎登录
+    </div>
+    <!-- 填写的表单 -->
+    <div id="outbox_form">
+        <!--表单使用 autocomplete="off"属性,可避免浏览器记忆输入记录-->
+        <form id="formId" autocomplete="off">
+            <!-- 账户框以及提示信息弹出位置 -->
+            <div id="outbox_form_account">
+                <div id="outbox_form_account_char">账户:</div>
+                <div  id="outbox_form_account_in">
+                    <label for="accountId"></label>
+                    <input id="accountId" type="text" name="name" placeholder="请输入账户名:" onfocus="reAcErr()" />
+                </div>
+                <!-- 提示信息框,在页面中配合javascript事件使用 -->
+                <div id="outbox_form_account_error"></div>
+            </div>
+
+            <!-- 密码框以及提示信息弹出位置 -->
+            <div id="outbox_form_password">
+                <div id="outbox_form_password_char">密码:</div>
+                <div  id="outbox_form_password_in" >
+                    <label for="passwordId"></label>
+                    <input id="passwordId" type="password" name="password" placeholder="请输入密码:" onfocus="rePassErr()"/>
+                </div>
+                <!-- 提示信息框,在页面中配合javascript事件使用 -->
+                <div id="outbox_form_password_error"></div>
+            </div>
+            <!-- 登录按钮位置 -->
+            <div id="outbox_form_loginbtn">
+                <input id="loginbtn" type="button" value="登录" onclick=toLogin() />
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

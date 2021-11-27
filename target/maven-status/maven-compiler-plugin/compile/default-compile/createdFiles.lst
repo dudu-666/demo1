@@ -1,3 +1,4 @@
+All\Test\Model\BookInformation.class
 All\login\Model\Account.class
 All\login\Controller\LoginController.class
 All\Model\BookInformation.class
@@ -13,6 +14,8 @@ All\ShowPage\Dao\ShowBookByBname.class
 All\ShowPage\Dao\BookDao.class
 All\ShowPage\Dao\AddBookBorrowRecords.class
 All\login\Model\NewAccount.class
+All\Test\Model\GMInformation.class
+All\Test\Model\UserInformation.class
 All\login\Model\Resetdao.class
 All\login\Model\User.class
 All\ShowPage\Controller\BookManagementController.class
