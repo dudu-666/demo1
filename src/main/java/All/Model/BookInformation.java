@@ -38,7 +38,7 @@ public class BookInformation {
         this.Bname=bookInformation.getBname();
         this.Bauthor=bookInformation.getBauthor();
         this.Bpublichouse=bookInformation.getBpublichouse();
-        this.Detail=bookInformation.getDetail();
+        this.Detail=bookInformation.getBDetail();
     }
     public String getBnum() {
         return Bnum;
@@ -64,10 +64,10 @@ public class BookInformation {
     public void setBpublichouse(String bpublichouse) {
         Bpublichouse = new String(bpublichouse.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
     }
-    public String getDetail() {
+    public String getBDetail() {
         return Detail;
     }
-    public void setDetail(String detail) {
+    public void setBDetail(String detail) {
         Detail = new String(detail.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
     }
 }

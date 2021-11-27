@@ -42,6 +42,14 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="jQuery" level="application" />
+    <orderEntry type="library" name="jquery-3.0.0" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="bootstrap-table-locale-all" level="application" />
+    <orderEntry type="library" name="bootstrap-table" level="application" />
+    <orderEntry type="library" name="all" level="application" />
+    <orderEntry type="library" name="purecss" level="application" />
+    <orderEntry type="library" name="popper.js" level="application" />
+    <orderEntry type="library" name="jquery-3.3.1" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:4.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.resteasy:resteasy-servlet-initializer:4.6.1.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.resteasy:resteasy-core:4.6.1.Final" level="project" />
@@ -83,6 +91,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.7.1" level="project" />
     <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.28" level="project" />
+    <orderEntry type="library" name="Maven: org.webjars:bootstrap:3.3.5" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:jquery:3.6.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-core:4.3.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
@@ -96,6 +105,5 @@
     <orderEntry type="library" name="Maven: jstl:jstl:1.2" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.18" level="project" />
     <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.6.1" level="project" />
-    <orderEntry type="library" name="jquery-3.0.0" level="application" />
   </component>
 </module>

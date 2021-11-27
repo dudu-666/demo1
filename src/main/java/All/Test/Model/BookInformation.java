@@ -6,7 +6,7 @@ public class BookInformation {
     private String Bname;
     private String Bauthor;
     private String Bpublichouse;
-    private String Detail;
+    private String BDetail;
     public boolean isBorrowed() {
         return IsBorrowed;
     }
@@ -22,7 +22,7 @@ public class BookInformation {
                 ", Bname='" + Bname + '\'' +
                 ", Bauthor='" + Bauthor + '\'' +
                 ", Bpublichouse='" + Bpublichouse + '\'' +
-                ", Detail='" + Detail + '\'' +
+                ", Detail='" + BDetail + '\'' +
                 ", IsBorrowed=" + IsBorrowed +
                 '}';
     }
@@ -32,14 +32,14 @@ public class BookInformation {
         Bname="";
         Bauthor="";
         Bpublichouse="";
-        Detail="";
+        BDetail="";
     };
     public void SetBookInformation(BookInformation bookInformation){
         this.Bnum=bookInformation.getBnum();
         this.Bname=bookInformation.getBname();
         this.Bauthor=bookInformation.getBauthor();
         this.Bpublichouse=bookInformation.getBpublichouse();
-        this.Detail=bookInformation.getDetail();
+        this.BDetail=bookInformation.getBDetail();
     }
     public String getBnum() {
         return Bnum;
@@ -65,10 +65,10 @@ public class BookInformation {
     public void setBpublichouse(String bpublichouse) {
         Bpublichouse = new String(bpublichouse.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
     }
-    public String getDetail() {
-        return Detail;
+    public String getBDetail() {
+        return BDetail;
     }
-    public void setDetail(String detail) {
-        Detail = new String(detail.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
+    public void setBDetail(String detail) {
+        BDetail = new String(detail.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
     }
 }
