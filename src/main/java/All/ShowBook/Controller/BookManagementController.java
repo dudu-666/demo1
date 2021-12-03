@@ -20,7 +20,7 @@ public class BookManagementController {
     }
     @RequestMapping(value = "TeamWorkShowController")
     public String TeamWorkShowController(){
-        return "tushu(1)";
+        return "deom";
     }
     @RequestMapping(value = "BookManagementShow", method = RequestMethod.POST)
     @ResponseBody
