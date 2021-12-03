@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>图书信息管理</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+
+</head>
+<body>
+<div style="margin:100px auto;width:1000px;">
+  <table id="table"></table>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">编辑</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="bnum">编号</label>
+          <input id="bnum" type="text" class="form-control"  />
+        </div>
+        <div class="form-group">
+          <label for="detail">详细内容</label>
+          <input id="detail" type="text" class="form-control"  />
+        </div>
+        <div class="form-group">
+          <label for="bname">书名</label>
+          <input id="bname" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="bauthor">作者</label>
+          <input id="bauthor" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="Borrowed">被借出</label>
+          <select id="Borrowed" class="form-control">
+            <option value="true">是</option>
+            <option value="false">否</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="bpublichouse">出版社</label>
+          <input id="bpublichouse" type="text" class="form-control" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" onclick="editInfo()">修改</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#table').bootstrapTable({
+    url: "BookManagementShow",                         // URL
+    method: "post",                                        // 请求类型
+    contentType: "application/x-www-form-urlencoded",      // post请求必须要有，否则后台接受不到参数
+    sidePagination: "server",                              // 设置在服务端还是客户端分页
+    showRefresh: false,                                    // 是否刷新按钮
+    sortStable: true,                                      // 是否支持排序
+    cache: true,                                          // 是否使用缓存
+    pagination: true,                                      // 是否显示分页
+    search: false,                                         // 是否有搜索框
+    clickToSelect: true,                                   // 是否点击选中行
+    pageNumber: 1,                                         // 首页页码，默认为1
+    pageSize: 5,                                           // 页面数据条数
+    pageList: [5, 10, 20, 30],
+    queryParamsType: "",
+    queryParams: function (params) {
+      return {
+        pageSize: params.pageSize,                     // 每页记录条数
+        pageNumber: params.pageNumber,                 // 当前页索引
+      };
+    },
+    columns: [{
+      field: 'bnum',
+      title: '书号',
+      align: "center",
+      halign: "center",
+      valign: 'middle',
+      sortable: true
+    },
+      {
+        field: 'bname',
+        title: '书名',
+        align: "center",
+        halign: "center",
+        valign: 'middle'
+      },
+      {
+        field: 'bauthor',
+        title: '作者',
+        align: "center",
+        halign: "center",
+        valign: 'middle'
+      },
+      {
+        field: 'bpublichouse',
+        title: '出版社',
+        align: "center",
+        halign: "center",
+        valign: 'middle'
+      },{
+        field: 'bdetail',
+        title: '详细内容',
+        align: "center",
+        halign: "center",
+        valign: 'middle'
+      },
+      {
+        field: 'borrowed',
+        title: '被借出',
+        align: "center",
+        halign: "center",
+        valign: 'middle'
+      },
+      {
+        field: 'operate',
+        title: '操作',
+        align: 'center',
+        valign: 'middle',
+        width: 200,
+        events: {
+          'click #edit': function (e, value, row, index) {
+            $('#bnum').val(row.bnum);
+            $('#bname').val(row.bname);
+            $('#bauthor').val(row.bauthor);
+            $('#bpublichouse').val(row.bpublichouse);
+            $('#detail').val(row.bdetail);
+            $('#Borrowed').val(row.borrowed);
+          },
+          'click #delete': function (e, value, row, index) {
+            deleteInfo(row.bnum);
+          }
+        },
+        formatter: function (value, row, index) {
+          var result = "";
+          result += '<button id="edit" class="btn btn-info" data-toggle="modal" data-target="#editModal">编辑</button>';
+          result += '<button id="delete" class="btn btn-danger" style="margin-left:10px;">删除</button>';
+          return result;
+        }
+      }]
+  })
+
+  // 修改信息
+  function editInfo() {
+    $.ajax({
+      type: 'post',
+      url: 'BookManagementChange',
+      dataType: 'json',
+      data: {
+        Bnum:$('#bnum').val(),
+        Bname:$('#bname').val(),
+        Bauthor:$('#bauthor').val(),
+        Bpublichouse:$('#bpublichouse').val(),
+        BDetail:$('#detail').val(),
+        IsBorrowed:$('#Borrowed').val()
+      },
+      success: function (data) {
+        if (data === 'Yes') {
+          $('#table').bootstrapTable('refresh');
+          $('#editModal').modal('hide');
+        }
+        else {
+          alert('修改失败');
+        }
+      }
+    })
+    refrash();
+  }
+
+  // 删除信息
+  function deleteInfo(id) {
+    $.ajax({
+      async:false,
+      type: 'GET',
+      url: 'BookManagementDelete',
+      dataType: 'json',
+      data: {
+        id: id
+      },
+      success: function () {
+
+      }
+    })
+    refrash();
+  }
+  function refrash(){
+    $('#table').bootstrapTable('refresh');
+  }
+</script>
+</body>
+</html>
