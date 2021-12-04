@@ -5,14 +5,14 @@ public class BookInformation {
     private String Bname;
     private String Bauthor;
     private String Bpublichouse;
-    private String Detail;
+    private String BDetail;
     public boolean isBorrowed() {
-        return IsBorrowed;
+        return Borrowed;
     }
     public void setBorrowed(boolean borrowed) {
-        IsBorrowed = borrowed;
+        Borrowed = borrowed;
     }
-    private boolean IsBorrowed=false;
+    private boolean Borrowed =false;
 
     @Override
     public String toString() {
@@ -21,8 +21,8 @@ public class BookInformation {
                 ", Bname='" + Bname + '\'' +
                 ", Bauthor='" + Bauthor + '\'' +
                 ", Bpublichouse='" + Bpublichouse + '\'' +
-                ", Detail='" + Detail + '\'' +
-                ", IsBorrowed=" + IsBorrowed +
+                ", Detail='" + BDetail + '\'' +
+                ", Borrowed=" + Borrowed +
                 '}';
     }
 
@@ -31,14 +31,14 @@ public class BookInformation {
         Bname="";
         Bauthor="";
         Bpublichouse="";
-        Detail="";
+        BDetail="";
     };
     public void SetBookInformation(BookInformation bookInformation){
         this.Bnum=bookInformation.getBnum();
         this.Bname=bookInformation.getBname();
         this.Bauthor=bookInformation.getBauthor();
         this.Bpublichouse=bookInformation.getBpublichouse();
-        this.Detail=bookInformation.getBDetail();
+        this.BDetail=bookInformation.getBDetail();
     }
     public String getBnum() {
         return Bnum;
@@ -65,9 +65,9 @@ public class BookInformation {
         Bpublichouse = new String(bpublichouse.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
     }
     public String getBDetail() {
-        return Detail;
+        return BDetail;
     }
     public void setBDetail(String detail) {
-        Detail = new String(detail.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
+        BDetail = new String(detail.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
     }
 }

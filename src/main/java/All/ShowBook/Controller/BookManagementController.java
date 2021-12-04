@@ -37,10 +37,11 @@ public class BookManagementController {
     @RequestMapping(value = "BookManagementChange" ,method = RequestMethod.POST)
     @ResponseBody
     public String Change(BookInformation bookInformation){
-        System.out.println(bookInformation.toString());
+        String Back;
         try {
             new BookChange(bookInformation).BookChange();
-            return "Yes";
-        }catch (Exception e){return "false";}
+            Back="Yes";
+            return Back;
+        }catch (Exception e){Back="No";return Back;}
     }
 }
