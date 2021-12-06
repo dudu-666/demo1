@@ -1,11 +1,12 @@
 package All.ShowBook.Dao;
 
+import All.Dao.SQLHelper;
 import All.Model.BookInformation;
 
 import java.sql.Connection;
 import java.sql.Statement;
 
-class AddBook implements BookDao {
+class AddBook implements SQLHelper {
     BookInformation bookInformation;
 
     AddBook(BookInformation bookInformation) {

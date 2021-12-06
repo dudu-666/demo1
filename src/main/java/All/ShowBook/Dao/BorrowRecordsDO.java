@@ -1,11 +1,13 @@
 package All.ShowBook.Dao;
 
+import All.Dao.SQLHelper;
+
 import java.sql.Connection;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-public class BorrowRecordsDO implements BookDao{
+public class BorrowRecordsDO implements SQLHelper {
     /*private UserInformation userInformation=new UserInformation();
     private BookInformation bookInformation=new BookInformation();
     BorrowRecordsDO(UserInformation userInformation_1,BookInformation bookInformation_1){

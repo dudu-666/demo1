@@ -1,5 +1,6 @@
 package All.ShowBook.Dao;
 
+import All.Dao.SQLHelper;
 import All.Model.BookInformation;
 
 import java.sql.Connection;
@@ -7,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
 
-public class ShowBookByBname implements BookDao{
+public class ShowBookByBname implements SQLHelper {
     private BookInformation[]BnameList;
     private List<BookInformation> bl=new ArrayList<>() ;
     public int getCount(){

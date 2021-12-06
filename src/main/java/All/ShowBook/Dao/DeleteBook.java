@@ -1,9 +1,11 @@
 package All.ShowBook.Dao;
 
+import All.Dao.SQLHelper;
+
 import java.sql.Connection;
 import java.sql.Statement;
 
-public class DeleteBook implements BookDao {
+public class DeleteBook implements SQLHelper {
     private String Booknum;
 
     public DeleteBook(String booknum) {

@@ -12,6 +12,7 @@ All\login\Dao\NewAccountModel.class
 All\login\Dao\ResetPasswordModel.class
 All\ShowBook\Controller\BookManagementController.class
 All\Model\GMInformation.class
+All\login\Dao\AESUtil.class
 All\login\Model\NewAccount.class
 All\Test\Model\GMInformation.class
 All\Test\Model\UserInformation.class

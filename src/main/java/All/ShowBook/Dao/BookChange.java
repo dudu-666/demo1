@@ -1,19 +1,19 @@
 package All.ShowBook.Dao;
 
+import All.Dao.SQLHelper;
 import All.Model.BookInformation;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.Statement;
 
-public class BookChange implements BookDao{
+public class BookChange implements SQLHelper {
     private BookInformation bookInformation;
     public BookChange(BookInformation bookInformation1){
         bookInformation=bookInformation1;
     };
     @Override
     public Connection getConnect() throws ClassNotFoundException {
-        return BookDao.super.getConnect();
+        return SQLHelper.super.getConnect();
     }
     public void BookChange(){
         String sql="UPDATE `teamwork`.`booklist` SET\n" +

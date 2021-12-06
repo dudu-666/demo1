@@ -1,13 +1,9 @@
 package All.login.Controller;
 
-import All.login.Model.Account;
-import All.login.Model.NewAccount;
-import All.login.Model.Resetdao;
-import All.login.Dao.GMLoginModel;
-import All.login.Model.User;
-import All.login.Dao.NewAccountModel;
-import All.login.Dao.ResetPasswordModel;
-import All.login.Dao.UserLoginModel;
+import All.login.Model.NewAccountModel;
+import All.login.Dao.GMLoginDao;
+import All.login.Model.LoginModel;
+import All.login.Dao.UserLoginDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,10 +13,10 @@ import java.sql.SQLException;
 @Controller
 public class LoginController {
     @RequestMapping(value = "GMLoginController",method = RequestMethod.POST)
-    public String GMLogin(Account account) {
-        GMLoginModel loginDao = new GMLoginModel(account);
+    public String GMLogin(LoginModel loginModel) {
+        GMLoginDao loginDao = new GMLoginDao(loginModel);
         try {
-            if (loginDao.Login() == 1) {
+            if (loginDao.Login()) {
                 return "MainPage";
             }
         } catch (SQLException | ClassNotFoundException e) {
@@ -29,10 +25,10 @@ public class LoginController {
         return "GMLogin";
     }
     @RequestMapping(value = "UserLoginController",method = RequestMethod.POST)
-    public String UserLogin(User user){
-        UserLoginModel userLoginModel=new UserLoginModel(user);
+    public String UserLogin(LoginModel loginModel){
+        UserLoginDao userLoginDao =new UserLoginDao(loginModel);
         try {
-            if (userLoginModel.Login() == 1) {
+            if (userLoginDao.Login()) {
                 return "MainPage";
             }
         } catch (SQLException | ClassNotFoundException e) {
@@ -40,9 +36,13 @@ public class LoginController {
         }
         return "UserLogin";
     }
-    @RequestMapping(value = "ResetController",method = RequestMethod.POST)
+    @RequestMapping(value = "Back")
+    public String Back(){
+        return "MainPage";
+    }
+    /*@RequestMapping(value = "ResetController",method = RequestMethod.POST)
     public String Reset(Resetdao resetdao){
-        ResetPasswordModel resetPasswordModel=new ResetPasswordModel();
+        ResetPasswordDao resetPasswordModel=new ResetPasswordDao();
         resetPasswordModel.setUname(resetdao.getUname());
         resetPasswordModel.setUpassword(resetdao.getUpassword1());
         if(resetdao.getChecknum()%2==0){
@@ -56,10 +56,10 @@ public class LoginController {
             }else System.out.println(resetdao.getUpassword1().equals(resetdao.getUpassword2()));
         }else System.out.println(resetdao.getChecknum()%2);
         return "ResetPassword";
-    }
+    }*/
     @RequestMapping(value = "NewAccountController",method = RequestMethod.POST)
-    public String NewAccount(NewAccount account){
-        NewAccountModel newAccountModel=new NewAccountModel();
+    public String NewAccount(NewAccountModel account){
+        /*NewAccountDao newAccountModel=new NewAccountDao();
         newAccountModel.setUname(account.getUname());
         newAccountModel.setAccount(account.getAccount());
         if(account.getUpassword1().equals(account.getUpassword2())) {
@@ -70,7 +70,7 @@ public class LoginController {
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
         return "ResetPassword";
     }
 }
