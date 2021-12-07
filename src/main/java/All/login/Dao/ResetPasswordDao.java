@@ -1,5 +1,7 @@
 package All.login.Dao;
 
+import All.Dao.ToolHelper;
+
 import java.sql.*;
 
 public class ResetPasswordDao {
@@ -14,17 +16,9 @@ public class ResetPasswordDao {
     public void setUpassword(String upassword) {
         Upassword = upassword;
     }
-    public Connection Getconnect() throws SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con;
-        String url = "jdbc:mysql://localhost:3306/teamwork?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false";        String user = "dudu";
-        String password = "dudu";
-        con = DriverManager.getConnection(url, user, password);
-        return con;
-    }
     public int GetID()throws SQLException, ClassNotFoundException{
         int flag=0;
-        Connection connection = Getconnect();
+        Connection connection = ToolHelper.getConnect();
         Statement stmt = connection.createStatement();
         String url = "Select *from userInformation";
         ResultSet rs = stmt.executeQuery(url);
@@ -42,7 +36,7 @@ public class ResetPasswordDao {
 
     }
     public int Reset() throws SQLException, ClassNotFoundException {
-        Connection connection = Getconnect();
+        Connection connection = ToolHelper.getConnect();
         int flag=GetID();
         Statement stmt = connection.createStatement();
         String url = "UPDATE `logindata`.`userinformation`\n" +

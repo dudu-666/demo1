@@ -1,20 +1,16 @@
 package All.ShowBook.Dao;
 
-import All.Dao.SQLHelper;
+import All.Dao.ToolHelper;
 import All.Model.BookInformation;
 
 import java.sql.Connection;
 import java.sql.Statement;
 
-public class BookChange implements SQLHelper {
+public class BookChange implements ToolHelper {
     private BookInformation bookInformation;
     public BookChange(BookInformation bookInformation1){
         bookInformation=bookInformation1;
     };
-    @Override
-    public Connection getConnect() throws ClassNotFoundException {
-        return SQLHelper.super.getConnect();
-    }
     public void BookChange(){
         String sql="UPDATE `teamwork`.`booklist` SET\n" +
                 "`Bnum` = '"+bookInformation.getBnum()+"',\n" +
@@ -25,7 +21,7 @@ public class BookChange implements SQLHelper {
                 "`IsBorrowed` = "+bookInformation.isBorrowed()+"\n" +
                 "WHERE `Bnum` = '"+bookInformation.getBnum()+"';";
         try {
-            Connection connection=getConnect();
+            Connection connection= ToolHelper.getConnect();
             Statement stmt=connection.createStatement();
             stmt.executeUpdate(sql);
         }catch (Exception e){System.out.println(e);}

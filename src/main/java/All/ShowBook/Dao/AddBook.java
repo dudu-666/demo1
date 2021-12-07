@@ -1,12 +1,12 @@
 package All.ShowBook.Dao;
 
-import All.Dao.SQLHelper;
+import All.Dao.ToolHelper;
 import All.Model.BookInformation;
 
 import java.sql.Connection;
 import java.sql.Statement;
 
-class AddBook implements SQLHelper {
+class AddBook {
     BookInformation bookInformation;
 
     AddBook(BookInformation bookInformation) {
@@ -30,7 +30,7 @@ class AddBook implements SQLHelper {
         if (bookInformation != null) {
             try {
                 String sql = "INSERT INTO `teamwork`.`booklist`" + "(`Bnum`," + "`Bname`," + "`Bauthor`," + "`Bpublichouse`," + "`Bdetail`," + "`IsBorrowed`)" + "VALUES" + "(" + '"' + bookInformation.getBnum() + '"' + "," + '"' + bookInformation.getBname() + '"' + "," + '"' + bookInformation.getBauthor() + '"' + "," + '"' + bookInformation.getBpublichouse() + '"' + "," + '"' + bookInformation.getBDetail() + '"' + "," + bookInformation.isBorrowed() + ')';
-                Connection connection = getConnect();
+                Connection connection = ToolHelper.getConnect();
                 System.out.println(sql);
                 Statement stmt = connection.createStatement();
                 stmt.executeUpdate(sql);

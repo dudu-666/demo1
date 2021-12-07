@@ -1,6 +1,6 @@
 package All.ShowBook.Dao;
 
-import All.Dao.SQLHelper;
+import All.Dao.ToolHelper;
 import All.Model.BookInformation;
 
 import java.sql.Connection;
@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
 
-public class ShowBookByBname implements SQLHelper {
+public class ShowBookByBname implements ToolHelper {
     private BookInformation[]BnameList;
     private List<BookInformation> bl=new ArrayList<>() ;
     public int getCount(){
@@ -16,7 +16,7 @@ public class ShowBookByBname implements SQLHelper {
         ResultSet rs;
         String sql="Select count(*) as totalCount from teamwork.booklist";
         try {
-            Connection connection=getConnect();
+            Connection connection= ToolHelper.getConnect();
             Statement stmt=connection.createStatement();
             rs= stmt.executeQuery(sql);
             if(rs.next()){
@@ -32,7 +32,7 @@ public class ShowBookByBname implements SQLHelper {
         BnameList=new BookInformation[getCount()];
         String sql="Select * from teamwork.booklist";
         try {
-            Connection connection=getConnect();
+            Connection connection= ToolHelper.getConnect();
             Statement stmt=connection.createStatement();
             rs=stmt.executeQuery(sql);
             while(rs.next()){
@@ -54,7 +54,7 @@ public class ShowBookByBname implements SQLHelper {
         ResultSet rs;
         String sql="Select * from teamwork.booklist";
         try {
-            Connection connection=getConnect();
+            Connection connection= ToolHelper.getConnect();
             Statement stmt=connection.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
             rs=stmt.executeQuery(sql);
             while(rs.next()){
@@ -73,7 +73,7 @@ public class ShowBookByBname implements SQLHelper {
 
    public static void main(String[] args) {
         ShowBookByBname showBookByBname=new ShowBookByBname();
-                            System.out.println(showBookByBname.getCount());        //测试读取表行数;
+        System.out.println(showBookByBname.getCount());        //测试读取表行数;
         BookInformation bookInformation=new BookInformation();
         List<BookInformation> bookInformationList;
         bookInformationList=showBookByBname.GetList();

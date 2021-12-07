@@ -1,11 +1,11 @@
 package All.ShowBook.Dao;
 
-import All.Dao.SQLHelper;
+import All.Dao.ToolHelper;
 
 import java.sql.Connection;
 import java.sql.Statement;
 
-public class DeleteBook implements SQLHelper {
+public class DeleteBook implements ToolHelper {
     private String Booknum;
 
     public DeleteBook(String booknum) {
@@ -15,7 +15,7 @@ public class DeleteBook implements SQLHelper {
     public void Delete() {
         String sql = "DELETE FROM `teamwork`.`booklist`" + "WHERE Bnum=" + Booknum + ";";
         try {
-            Connection connection = getConnect();
+            Connection connection = ToolHelper.getConnect();
             Statement stmt = connection.createStatement();
             stmt.executeUpdate(sql);
         } catch (Exception e) {

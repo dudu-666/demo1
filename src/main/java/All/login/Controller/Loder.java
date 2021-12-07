@@ -23,6 +23,6 @@ public class Loder {
     }
     @RequestMapping(path = "NewAccount" )
     public String NewAccount(){
-        return "NewAccount";
+        return "NewAccount(1)";
     }
 }
