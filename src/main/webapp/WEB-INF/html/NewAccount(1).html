@@ -5,8 +5,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <!-- <script  type="text/javascript" src="hefaxin.js"></script> -->
+    <script type="text/javascript" src="webjars/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function NewAccount() {
+            $.ajax({
+                url: "NewAccountController",
+                contentType: "application/x-www-form-urlencoded",
+                type: 'POST',
+                Data: {
+                    UserName: $("#UserName").val(),
+                    Email: $("#Email").val(),
+                    PassWord: $("#SurePassword").val(),
+                    Sex: $("#Sex").select,
+                    Type: $("#Type").select,
+                    Loginaccountname:$("#Email").val(),
+                    Phone:$("#Phone").val()
+                },
+                success:function () {
+                    alert("注册成功!");
+                }
+            })
+        }
+    </script>
     <title>注册</title>
     <style>
          body {
@@ -65,6 +85,15 @@
             border-radius: 10px;
             background-image: linear-gradient(to left, #fd79a8, #a29bfe);
         }
+        .Phone{
+            width: 100%;
+            margin-bottom: 20px;
+            outline: none;
+            border: 0;
+            padding: 10px;
+            border-bottom: 2px solid rgb(60,60,70);
+            font: 900 16px '';
+        }
          .NewPassWord{
              width: 100%;
              margin-bottom: 20px;
@@ -88,35 +117,30 @@
 
 </head>
 <body>
-  
- 
-                   
-            
     <div class="a">
         <div class="b">
             <p class="c">注册账户</p>
             <div class="d">
-                <form action="#" id="form" method="post">
-                <input  id="username" type="text" class="UserName" placeholder="请输入用户名（用户名设置为2-20位）" name="UserName">
+                <input  id="UserName" type="text" class="UserName" placeholder="请输入用户名（用户名设置为2-20位）">
                 <span id="s_username"  ></span>
-                <input  id="email" type="text" class="Email" placeholder="请输入邮箱" name="Email">
+                <input  id="Email" type="text" class="Email" placeholder="请输入邮箱">
+                <input  id="Phone" type="text" class="Phone" placeholder="请输入您的电话号码">
+                <input  id="Password" type="password" class="NewPassWord" placeholder="请输入新密码(密码设置为8-16位)">
                 <span id="s_email"></span>
-                <input  id="password" type="password" class="NewPassWord" placeholder="请输入新密码(密码设置为8-16位)" name="NewPassWord">
                 <span id="s_password" ></span>
-                <input id="surepassword" type="password"  class="SurePassword" placeholder="请确认新密码" name="SurePassword">
+                <input id="surepassword" type="password"  class="SurePassword" placeholder="请确认新密码">
                 <span id="s_surepassword"  class="error"></span>
-                <p><input type="radio"  name="Sex" class="Sex" value="男">男<input type="radio" name="Sex" value="女">女</p>
-                <p><input type="radio"  name="Type" class="Type" value="管理员">管理员<input type="radio" name="Type" value="组员">组员</p>
-                    <input type="submit" value="注册" formtarget="_self" class="f" onclick="NewAccount">
-                    <p id="demo"></p>
-                </form>
+                <p id="Sex"><input type="radio"   class="Sex" value="男">男<input type="radio"  value="女">女</p>
+                <p id="Type"><input type="radio"   class="Type" value="GM">管理员<input type="radio" name="Type" value="User">组员</p>
+                <input type="button" value="注册" formtarget="_self" class="f" onclick="NewAccount()">
+                <p id="demo"></p>
             </div>
         </div>
     </div>
 </body>
 <script>
     
-    window.onload = function(){
+    /*window.onload = function(){
             document.getElementById("form").onsubmit = function(){
                 return checkUsername() && checkPassword()&&surePassword()&&checkEmail;
             };
@@ -176,79 +200,6 @@
             }
             return flag;
         }
-        
-
-    // function NewAccount() {
-        
-    //     if (TestUname($(".UserName").val())) {
-    //         if ($(".NewPassWord").val() === $(".SurePassword").val()) {
-    //             Send();
-    //         } else {
-    //             $(".NewPassWord").clear()
-    //             $(".SurePassword").clear()
-    //             alert("两次密码输入不一致!");
-    //         }
-    //     }else {
-    //         $(".UserName").clear()
-    //         alert("用户名不合法!")
-    //     }
-    // }
-    // function TestUname(Uname){
-    //     var U=Uname;
-    //     var Ch;
-    //     var i=0;
-    //     var flag=0;
-    //     while (U.indexOf(i)){
-    //         i++;
-    //         Ch=U.indexOf(i);
-    //         if(!(U!==''&&U!==' '&&((U>'a'&&U<'z')||(U>'0'&&U<'9')))){
-    //             flag--;
-    //         }
-    //     }
-    //     return flag >= 0;
-    // }
-    // function Send() {
-    //     $.ajax({
-    //         url: "NewAccountController",
-    //         async: false,
-    //         contentType: 'application/json',
-    //         type: 'post',
-    //         Data: {
-    //             UserName: $(".UserName").val(),
-    //             Email: $(".Email").val(),
-    //             NewPassword: $(".NewPassword").val(),
-    //             SurePassword: $(".SurePassword").val(),
-    //             Sex: $(".Sex").select.value(),
-    //             Type: $(".Type").select.value(),
-    //         },
-    //         success() {
-    //             alert("获取成功!");
-    //         }
-    //     })
-    // }
-</script>
-<script>
-    function NewAccount() {
-        Send();
-    }
-    function Send() {
-        $.ajax({
-            url: "NewAccountController",
-            async: false,
-            contentType: 'application/json',
-            type: 'post',
-            Data: {
-                UserName: $(".UserName").val(),
-                Email: $(".Email").val(),
-                NewPassword: $(".NewPassword").val(),
-                SurePassword: $(".SurePassword").val(),
-                Sex: $(".Sex").select.value(),
-                Type: $(".Type").select.value(),
-            },
-            success() {
-                alert("获取成功!");
-            }
-        })
-    }
+        */
 </script>
 </html>

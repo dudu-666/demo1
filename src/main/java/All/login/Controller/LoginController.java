@@ -1,5 +1,6 @@
 package All.login.Controller;
 
+import All.login.Dao.NewAccountDao;
 import All.login.Model.NewAccountModel;
 import All.login.Dao.GMLoginDao;
 import All.login.Model.LoginModel;
@@ -7,6 +8,7 @@ import All.login.Dao.UserLoginDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.sql.SQLException;
 
@@ -58,19 +60,15 @@ public class LoginController {
         return "ResetPassword";
     }*/
     @RequestMapping(value = "NewAccountController",method = RequestMethod.POST)
+    @ResponseBody
     public String NewAccount(NewAccountModel account){
-        /*NewAccountDao newAccountModel=new NewAccountDao();
-        newAccountModel.setUname(account.getUname());
-        newAccountModel.setAccount(account.getAccount());
-        if(account.getUpassword1().equals(account.getUpassword2())) {
-            newAccountModel.setUpassword(account.getUpassword1());
+        /*NewAccountDao accountDao=new NewAccountDao(account);
             try {
-                if(newAccountModel.create()==1)
+                if(accountDao.create())
                     return "Login";
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
-            }
-        }*/
-        return "ResetPassword";
+            }*/
+        return account.toString();
     }
 }

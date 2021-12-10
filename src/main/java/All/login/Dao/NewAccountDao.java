@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class NewAccountDao implements ToolHelper {
     private NewAccountModel model;
-    NewAccountDao(NewAccountModel Mod){
+    public NewAccountDao(NewAccountModel Mod){
         model=Mod;
     }
     private String CreateNum(){
@@ -18,9 +18,10 @@ public class NewAccountDao implements ToolHelper {
         DateFormat df=new SimpleDateFormat("yyyyMMddHHmmss");
         return df.format(CreateNum);
     }
-    public boolean create(String type)throws SQLException, ClassNotFoundException {
+    public boolean create()throws SQLException, ClassNotFoundException {
+
         String GM = "gm", User = "user";
-        String result = type.equals("GM") ? GM : User;
+        String result = model.getType().equals("GM") ? GM : User;
         String Usersql = "INSERT INTO `teamwork`.`" + result + "`\n" +
                 "(`Unum`,\n" +
                 "`Loginaccountname`,\n" +
@@ -41,7 +42,7 @@ public class NewAccountDao implements ToolHelper {
                 "`Gemail`)\n" +
                 "VALUES\n" +
                 "('" + CreateNum() + "','" + model.getLoginaccountname() + "','" + model.getPassWord() + "','" +model.getUserName()+ "','" +model.getSex()+ "','" +model.getPhone()+ "','" +model.getEmail()+ "');";
-        String sql= type.equals("GM") ? Gmsql : Usersql;
+        String sql= model.getType().equals("GM") ? Gmsql : Usersql;
         ResultSet rs = ToolHelper.getConnect().createStatement().executeQuery("select * from teamwork." + result + "where `Loginaccountname` =" + "'" + model.getLoginaccountname() + "';");
         if (rs.next()) {
             return false;

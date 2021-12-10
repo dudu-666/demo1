@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css">
   <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript"src="webjars/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
@@ -16,9 +16,7 @@
 
 </head>
 <body>
-<div href="">
-  <input type="button">返回
-</div>
+
 <div style="margin:100px auto;width:1000px;">
   <table id="table"></table>
 </div>
@@ -169,7 +167,7 @@
   function editInfo() {
     $.ajax({
       type: 'post',
-      url: 'BookManagementChange',
+      url: 'BookManagementRestChange',
       dataType: 'json',
       data: {
         Bnum:$('#bnum').val(),
@@ -198,7 +196,7 @@
     $.ajax({
       async:false,
       type: 'GET',
-      url: 'BookManagementDelete',
+      url: 'BookManagementRestDelete',
       dataType: 'json',
       data: {
         id: id

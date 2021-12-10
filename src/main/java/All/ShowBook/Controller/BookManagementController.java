@@ -3,8 +3,7 @@ package All.ShowBook.Controller;
 import All.Model.BookInformation;
 import All.ShowBook.Dao.BookChange;
 import All.ShowBook.Dao.DeleteBook;
-import All.ShowBook.Dao.ShowBookByBname;
-import com.fasterxml.jackson.jaxrs.json.annotation.JSONP;
+import All.ShowBook.Dao.ShowBook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +24,7 @@ public class BookManagementController {
     @RequestMapping(value = "BookManagementShow", method = RequestMethod.POST)
     @ResponseBody
     public List Show(){
-        ShowBookByBname show=new ShowBookByBname();
+        ShowBook show=new ShowBook();
         return show.GetList();
     }
     @RequestMapping(value = "BookManagementDelete", method = RequestMethod.GET)

@@ -12,14 +12,16 @@ public class DeleteBook implements ToolHelper {
         this.Booknum = booknum;
     }
 
-    public void Delete() {
+    public boolean Delete() {
         String sql = "DELETE FROM `teamwork`.`booklist`" + "WHERE Bnum=" + Booknum + ";";
         try {
             Connection connection = ToolHelper.getConnect();
             Statement stmt = connection.createStatement();
             stmt.executeUpdate(sql);
+            return true;
         } catch (Exception e) {
             System.out.println(e);
+            return false;
         }
     }
 }

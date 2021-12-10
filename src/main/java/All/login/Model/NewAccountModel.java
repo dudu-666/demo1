@@ -9,6 +9,33 @@ public class NewAccountModel {
     private String Sex;
     private String Phone;
     private String Loginaccountname;
+    private String Type;
+
+    @Override
+    public String toString() {
+        return "NewAccountModel{" +
+                "UserName='" + UserName + '\'' +
+                ", Email='" + Email + '\'' +
+                ", PassWord='" + PassWord + '\'' +
+                ", Sex='" + Sex + '\'' +
+                ", Phone='" + Phone + '\'' +
+                ", Loginaccountname='" + Loginaccountname + '\'' +
+                ", Type='" + Type + '\'' +
+                '}';
+    }
+
+    public void setLoginaccountname(String loginaccountname) {
+        Loginaccountname = loginaccountname;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String type) {
+        Type = type;
+    }
+
     public String getPhone() {
         return Phone;
     }

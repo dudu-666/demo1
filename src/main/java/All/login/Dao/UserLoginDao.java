@@ -15,7 +15,7 @@ public class UserLoginDao implements ToolHelper {
     public Boolean Login() throws SQLException, ClassNotFoundException {
         Connection connection = ToolHelper.getConnect();
         Statement stmt = connection.createStatement();
-        String url = "Select *from teamwork.user where `Uloginaccountname` ="+"'"+LoginAccountName+"'";
+        String url = "Select *from teamwork.user where `loginaccountname` ="+"'"+LoginAccountName+"'";
         ResultSet rs = stmt.executeQuery(url);
         while (rs.next()) {
             String s2 = rs.getString("Upassword");

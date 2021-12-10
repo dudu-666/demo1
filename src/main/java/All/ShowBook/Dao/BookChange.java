@@ -11,7 +11,7 @@ public class BookChange implements ToolHelper {
     public BookChange(BookInformation bookInformation1){
         bookInformation=bookInformation1;
     };
-    public void BookChange(){
+    public boolean BookChange(){
         String sql="UPDATE `teamwork`.`booklist` SET\n" +
                 "`Bnum` = '"+bookInformation.getBnum()+"',\n" +
                 "`Bname` = '"+bookInformation.getBname()+"',\n" +
@@ -24,7 +24,8 @@ public class BookChange implements ToolHelper {
             Connection connection= ToolHelper.getConnect();
             Statement stmt=connection.createStatement();
             stmt.executeUpdate(sql);
-        }catch (Exception e){System.out.println(e);}
+            return true;
+        }catch (Exception e){System.out.println(e);return false;}
     }
 
     public static void main(String[] args) {

@@ -12,6 +12,7 @@ All\login\Dao\ResetPasswordDao.class
 All\ShowBook\Controller\BookManagementController.class
 All\Model\GMInformation.class
 All\login\Dao\UserLoginDao.class
+All\ShowBook\RestController\BookManagementRestController.class
 All\login\Dao\AESUtil.class
 All\ShowBook\Dao\AskBorrow.class
 All\Test\Model\GMInformation.class
@@ -19,9 +20,9 @@ All\login\Model\ResetPasswordModel.class
 All\login\Model\NewAccountModel.class
 All\Dao\ToolHelper.class
 All\Test\Model\UserInformation.class
-All\ShowBook\Dao\ShowBookByBname.class
 All\login\Dao\NewAccountDao.class
 All\Model\UserInformation.class
+All\ShowBook\Dao\ShowBook.class
 All\ShowBook\Dao\BookChange.class
 All\ShowBook\Dao\SearchBookByBname.class
 All\ShowBook\Model\BookBorrowRecords.class
