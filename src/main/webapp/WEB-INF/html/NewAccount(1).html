@@ -6,27 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="webjars/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        function NewAccount() {
-            $.ajax({
-                url: "NewAccountController",
-                contentType: "application/x-www-form-urlencoded",
-                type: 'POST',
-                Data: {
-                    UserName: $("#UserName").val(),
-                    Email: $("#Email").val(),
-                    PassWord: $("#SurePassword").val(),
-                    Sex: $("#Sex").select,
-                    Type: $("#Type").select,
-                    Loginaccountname:$("#Email").val(),
-                    Phone:$("#Phone").val()
-                },
-                success:function () {
-                    alert("注册成功!");
-                }
-            })
-        }
-    </script>
     <title>注册</title>
     <style>
          body {
@@ -128,16 +107,57 @@
                 <input  id="Password" type="password" class="NewPassWord" placeholder="请输入新密码(密码设置为8-16位)">
                 <span id="s_email"></span>
                 <span id="s_password" ></span>
-                <input id="surepassword" type="password"  class="SurePassword" placeholder="请确认新密码">
+                <input id="SurePassword" type="password"  class="SurePassword" placeholder="请确认新密码">
                 <span id="s_surepassword"  class="error"></span>
-                <p id="Sex"><input type="radio"   class="Sex" value="男">男<input type="radio"  value="女">女</p>
-                <p id="Type"><input type="radio"   class="Type" value="GM">管理员<input type="radio" name="Type" value="User">组员</p>
+                <p id="Sex"><input type="radio" name="Sex"  class="Sex" value="男">男<input type="radio" name="Sex"   value="女">女</p>
+                <p id="Type"><input type="radio" name="Type"  class="Type" value="GM">管理员<input type="radio" name="Type" value="User">组员</p>
                 <input type="button" value="注册" formtarget="_self" class="f" onclick="NewAccount()">
                 <p id="demo"></p>
             </div>
         </div>
     </div>
 </body>
+<script>
+    function NewAccount() {
+        var obj1 = document.getElementsByName("Sex");
+        var obj2 = document.getElementsByName("Type");
+        var Sex1;
+        var Type1;
+        for(var i=0; i<obj1.length; i ++){
+            if(obj1[i].checked){
+                Sex1=obj1[i].value;
+            }
+        }
+        for(var i=0; i<obj2.length; i ++){
+            if(obj2[i].checked){
+                Type1=obj2[i].value;
+            }
+        }
+        $.ajax({
+            url: "NewAccountController",
+            dataType: "json",
+            type: 'post',
+            data:{
+                UserName:$("#UserName").val(),
+                Email:$("#Email").val(),
+                PassWord:$("#SurePassword").val(),
+                Loginaccountname:$("#Email").val(),
+                Phone:$("#Phone").val(),
+                Sex:Sex1,
+                Type:Type1
+            },
+            success:function (data) {
+                if(data.Return === "True" ) {
+                    $.ajax({
+                        url:"UserLogin"
+                    })
+                }else {
+                    alert("注册失败!")
+                }
+            }
+        })
+    }
+</script>
 <script>
     
     /*window.onload = function(){
