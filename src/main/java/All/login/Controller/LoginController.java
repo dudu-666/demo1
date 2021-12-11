@@ -8,9 +8,6 @@ import All.login.Dao.UserLoginDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.sql.SQLException;
 
 @Controller
 public class LoginController {
@@ -21,8 +18,8 @@ public class LoginController {
             if (loginDao.Login()) {
                 return "MainPage";
             }
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e);
         }
         return "GMLogin";
     }
@@ -33,7 +30,7 @@ public class LoginController {
             if (userLoginDao.Login()) {
                 return "MainPage";
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "UserLogin";
@@ -59,16 +56,17 @@ public class LoginController {
         }else System.out.println(resetdao.getChecknum()%2);
         return "ResetPassword";
     }*/
-    @RequestMapping(value = "NewAccountController",method = RequestMethod.POST)
-    @ResponseBody
+    @RequestMapping(value = "NewAccountController",method = RequestMethod.POST,produces = "application/json; charset=utf-8")
     public String NewAccount(NewAccountModel account){
-        /*NewAccountDao accountDao=new NewAccountDao(account);
+        NewAccountDao accountDao=new NewAccountDao(account);
             try {
                 if(accountDao.create())
-                    return "Login";
-            } catch (SQLException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }*/
-        return account.toString();
+                    return "UserLogin";
+                else
+                    return "NewAccount";
+            } catch (Exception e) {
+               System.out.println(e);
+               return "NewAccount";
+            }
     }
 }
