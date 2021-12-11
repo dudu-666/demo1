@@ -6,6 +6,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd     http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <context:component-scan base-package="All.login.Controller"/>
     <context:component-scan base-package="All.ShowBook.Controller"/>
+    <context:component-scan base-package="All.ShowBook.RestController"/>
     <mvc:annotation-driven />
     <!-- 解决了静态资源可以访问后动态资源的访问有出现了问题 -->
     <bean id="freemarkerConfiguration"
