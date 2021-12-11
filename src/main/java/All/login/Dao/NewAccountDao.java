@@ -43,7 +43,7 @@ public class NewAccountDao implements ToolHelper {
                 "VALUES\n" +
                 "('" + CreateNum() + "','" + model.getLoginaccountname() + "','" + model.getPassWord() + "','" +model.getUserName()+ "','" +model.getSex()+ "','" +model.getPhone()+ "','" +model.getEmail()+ "');";
         String sql= model.getType().equals("GM") ? Gmsql : Usersql;
-        ResultSet rs = ToolHelper.getConnect().createStatement().executeQuery("select * from teamwork." + result + "where `Loginaccountname` =" + "'" + model.getLoginaccountname() + "';");
+        ResultSet rs = ToolHelper.getConnect().createStatement().executeQuery("select * from teamwork. " + result + " where `Loginaccountname` ='" + model.getLoginaccountname() + "';");
         if (rs.next()) {
             return false;
         } else {
